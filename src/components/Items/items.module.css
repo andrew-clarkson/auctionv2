@@ -1,0 +1,25 @@
+.itemsGridContainer {
+    display: grid;
+    grid-template-columns: auto;
+        gap: 20px;
+        justify-content: space-between;
+}
+
+@media screen and (min-width: 800px) {
+    .itemsGridContainer {
+        grid-template-columns:  repeat(2, auto);
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .itemsGridContainer {
+        grid-template-columns:  repeat(3, auto);
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .itemsGridContainer {
+        grid-template-columns: repeat(4, auto);
+    }
+}
+

@@ -1,0 +1,18 @@
+.itemContainer {
+    max-width: 300px;
+}
+
+.title {
+    margin: 0;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.labels {
+    margin: 3px 0;
+}
+
+.auctioneer {
+    color: gray;
+    margin: 3px 0;
+}

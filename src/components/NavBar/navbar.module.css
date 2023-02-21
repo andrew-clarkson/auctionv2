@@ -1,0 +1,12 @@
+.navBar {
+    display: grid;
+    grid-template-columns: auto auto;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    font-size: larger;
+}

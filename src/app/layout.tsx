@@ -1,4 +1,7 @@
+import Link from 'next/link'
+import Nav from '@root/components/NavBar/NavBar';
 import './globals.css'
+import Footer from '@root/components/Footer/Footer';
 
 export default function RootLayout({
   children,
@@ -12,7 +15,12 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        {/* navbar here will be rendered on all pages inside this route */}
+        <Nav/>
+        {children}
+        <Footer/>
+      </body>
     </html>
-  )
+  );
 }
