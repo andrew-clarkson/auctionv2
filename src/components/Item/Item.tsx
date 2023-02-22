@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./item.module.css";
 
 interface Item {
-  item: { title: string; auctioneer: string; img: string, price: number };
+  item: { title: string; auctioneer: string; img: string; price: number };
 }
 
 export default function Item(props: Item) {
