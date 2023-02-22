@@ -1,20 +1,19 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './item.module.css';
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./item.module.css";
 
-export default function Item() {
+interface Item {
+  item: { title: string; auctioneer: string; img: string, price: number };
+}
+
+export default function Item(props: Item) {
   return (
     <div className={styles.itemContainer}>
-      <Image
-        src="https://picsum.photos/200/300"
-        width={300}
-        height={200}
-        alt="auction pic"
-      />
+      <Image src={props.item.img} width={300} height={200} alt="auction pic" />
       <div>
-        <p className={styles.title}>Item Title</p>
-        <p className={styles.labels}>tags/labels</p>
-        <p className={styles.auctioneer}>Auctioneer/Location</p>
+        <p className={styles.title}>{props.item.title}</p>
+        <p className={styles.auctioneer}>{props.item.auctioneer}</p>
+        <p>${props.item.price}</p>
       </div>
     </div>
   );
