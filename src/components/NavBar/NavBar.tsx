@@ -9,6 +9,9 @@ export default function Nav() {
       </Link>
 
       <div className={styles.navButtons}>
+        <Link href="/additem">
+          <button className="">Add Item</button>
+        </Link>
         <Link href="/login">
           <button className="">Sign Up</button>
         </Link>
