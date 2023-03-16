@@ -1,0 +1,19 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Item {
+  id           String   @id @default(uuid())
+  description  String
+  photoUrl     String
+  price        Decimal  @db.Decimal(10,2)
+  title        String
+}
