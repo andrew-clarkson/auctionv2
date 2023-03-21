@@ -15,6 +15,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       // validations?
       const createItem = await prisma.item.create({data: req.body})
       res.status(201).json(createItem)
+      break
     case 'DELETE':
       const deleteItem = await prisma.item.delete({
         where: {
@@ -22,6 +23,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         },
       })
       res.status(200).json(deleteItem)
+      break
     default:
       res.status(405).end(`Method ${method} Not Allowed`)
   }
