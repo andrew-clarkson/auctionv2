@@ -1,11 +1,17 @@
-import Image from "next/image";
-import styles from "./item.module.css";
+import Image from 'next/image';
+import styles from './item.module.css';
 
-interface Item {
-  item: { id: string; title: string; description: string; photoUrl: string; price: number };
+interface Props {
+  item: {
+    id: string;
+    title: string;
+    description: string;
+    photoUrl: string;
+    price: number;
+  };
 }
 
-export default function Item(props: Item) {
+export default function Item(props: Props) {
   const deleteItem = async () => {
     const response = await fetch('/api/items', {
       method: 'DELETE',
@@ -13,15 +19,20 @@ export default function Item(props: Item) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(props.item.id),
-    })
+    });
     const data = await response.json();
     // need error handling
-    alert("deleted")
-  }
+    alert('deleted');
+  };
 
   return (
     <div className={styles.itemContainer}>
-      <Image src={props.item.photoUrl} width={300} height={200} alt="auction pic" />
+      <Image
+        src={props.item.photoUrl}
+        width={300}
+        height={200}
+        alt='auction pic'
+      />
       <div>
         <p className={styles.title}>{props.item.title}</p>
         <p className={styles.title}>{props.item.description}</p>
