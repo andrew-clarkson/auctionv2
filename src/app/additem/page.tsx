@@ -13,7 +13,7 @@ export default function AddItem() {
           title: "",
           description: "",
           price: "",
-          auctioneer: "",
+          photoUrl: ""
         }}
         validationSchema={Yup.object({
           title: Yup.string()
@@ -24,14 +24,25 @@ export default function AddItem() {
             .min(25, "Must be at least 25 characters")
             .max(500, "Must be less than 500 characters")
             .required("Required"),
-          price: Yup.number().required("Required"),
-          auctioneer: Yup.string().required("Required"),
+          price: Yup.number()
+            .required("Required"),
+          photoUrl: Yup.string()
+            .required("Required")
+            .matches(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/, "That is not a valid URL")
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+
+
+        onSubmit={async (values, { setSubmitting }) => {
+          const response = await fetch('/api/items', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+          const data = await response.json();
+          // need error handling
+          alert("submitted")
         }}
       >
         {(formik) => (
@@ -79,16 +90,16 @@ export default function AddItem() {
             </div>
 
             <div>
-              <label htmlFor="auctioneer">Auctioneer</label>
+              <label htmlFor="photoUrl">Photo URL</label>
             </div>
             <div>
               <input
-                id="auctioneer"
+                id="photoUrl"
                 type="text"
-                {...formik.getFieldProps("auctioneer")}
+                {...formik.getFieldProps("photoUrl")}
               />
-              {formik.touched.auctioneer && formik.errors.auctioneer && (
-                <div>{formik.errors.auctioneer}</div>
+              {formik.touched.photoUrl && formik.errors.photoUrl && (
+                <div>{formik.errors.photoUrl}</div>
               )}
             </div>
 

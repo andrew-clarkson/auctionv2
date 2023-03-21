@@ -8,12 +8,20 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
   switch (method) {
     case 'GET':
-      // get the title and content from the request body
-      // const { title, } = req.body
-      // use prisma to create a new post using that data
       const items = await prisma.item.findMany()
-      res.status(201).json(items)
+      res.status(200).json(items)
       break
+    case 'POST':
+      // validations?
+      const createItem = await prisma.item.create({data: req.body})
+      res.status(201).json(createItem)
+    case 'DELETE':
+      const deleteItem = await prisma.item.delete({
+        where: {
+          id: req.body,
+        },
+      })
+      res.status(200).json(deleteItem)
     default:
       res.status(405).end(`Method ${method} Not Allowed`)
   }

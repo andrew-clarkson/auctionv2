@@ -20,10 +20,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         res.status(200).json(item)
         break
       }
-    case 'POST':
-
-
-
     default:
       res.status(405).end(`Method ${method} Not Allowed`)
   }
