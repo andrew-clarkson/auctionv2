@@ -1,18 +1,33 @@
 .itemContainer {
     max-width: 300px;
+    background: white;
+    border: 0 solid transparent;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.detailsSection {
+    padding: 10px
 }
 
 .title {
     margin: 0;
     font-size: larger;
-    font-weight: bold;
 }
 
-.tag {
-    margin: 3px 0;
+.description {
+    font-size: small;
+    margin: 5px 0
 }
 
 .auctioneer {
     color: gray;
     margin: 3px 0;
 }
+
+.image {
+    border: 0 solid transparent;
+    border-radius: 15px 15px 0 0;
+}
+
+.buttonsSection {}
