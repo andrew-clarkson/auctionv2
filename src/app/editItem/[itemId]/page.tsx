@@ -1,16 +1,32 @@
 "use client";
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import Button from "@root/components/Button/Button";
 
-export default function AddItem() {
-  const initialValues = {
+export default function EditItem({ params }) {
+
+  const [loading, setLoading] = useState(true)
+  const [initialValues, setInitialValues] = useState({
     title: '',
     description: '',
     price: '',
     photoUrl: '',
-  };
+    id: ''
+  });
+
+  useEffect(() => {
+    async function fetchItems() {
+      const res = await fetch(`/api/items/${params.itemId}`);
+      const values = await res.json();
+      setInitialValues(values)
+      setLoading(false)
+      console.log(values)
+    }
+    fetchItems();
+  }, [params.itemId]);
+
+
 
   const validationSchema = Yup.object({
     title: Yup.string()
@@ -32,16 +48,18 @@ export default function AddItem() {
 
 
 
+  if (loading) return
+
   return (
     <div>
-      <h1>Add an Item</h1>
+      <h1>Edit Item</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         // different onsubmit for add and edit
         onSubmit={async (values, { setSubmitting }) => {
           const response = await fetch('/api/items', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -49,7 +67,7 @@ export default function AddItem() {
           });
           const data = await response.json();
           // need error handling
-          alert('submitted');
+          alert('edited');
         }}
       >
         {(formik) => (
@@ -111,7 +129,7 @@ export default function AddItem() {
             </div>
 
             <Button
-              buttonText='Add Item'
+              buttonText='Edit Item'
               color='green'
               type='submit'
               disabled={formik.isSubmitting}

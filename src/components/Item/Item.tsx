@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './item.module.css';
 
 interface Props {
@@ -39,7 +40,7 @@ export default function Item(props: Props) {
         {/* <p className={styles.auctioneer}>{props.item.auctioneer}</p> */}
         <p>${props.item.price}</p>
         <button>Bid</button>
-        <button>Edit</button>
+        <Link href={`/editItem/${props.item.id}`} ><button>Edit</button></Link>
         <button onClick={deleteItem}>Delete</button>
       </div>
     </div>

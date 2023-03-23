@@ -8,23 +8,31 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
   switch (method) {
     case 'GET':
-      const items = await prisma.item.findMany()
-      res.status(200).json(items)
-      break
+      const items = await prisma.item.findMany();
+      res.status(200).json(items);
+      break;
     case 'POST':
       // validations?
-      const createItem = await prisma.item.create({data: req.body})
-      res.status(201).json(createItem)
-      break
+      const createItem = await prisma.item.create({ data: req.body });
+      res.status(201).json(createItem);
+      break;
+    case 'PUT':
+      // validations?
+      const editItem = await prisma.item.update({
+        where: { id: req.body.id },
+        data: { ...req.body },
+      });
+      res.status(201).json(editItem);
+      break;
     case 'DELETE':
       const deleteItem = await prisma.item.delete({
         where: {
           id: req.body,
         },
-      })
-      res.status(200).json(deleteItem)
-      break
+      });
+      res.status(200).json(deleteItem);
+      break;
     default:
-      res.status(405).end(`Method ${method} Not Allowed`)
+      res.status(405).end(`Method ${method} Not Allowed`);
   }
 }

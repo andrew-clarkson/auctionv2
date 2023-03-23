@@ -1,12 +1,20 @@
 "use client";
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import * as Yup from "yup";
 import Button from "@root/components/Button/Button";
 
-export default function AddItem() {
+export default function EditItem({ params }) {
+
+
+  ////////////////////////////
+  // this is not the specific item page, delete?
+  // //////////////////////
+  console.log(params)
+
+
   const initialValues = {
-    title: '',
+    title: 'hi',
     description: '',
     price: '',
     photoUrl: '',
@@ -41,7 +49,7 @@ export default function AddItem() {
         // different onsubmit for add and edit
         onSubmit={async (values, { setSubmitting }) => {
           const response = await fetch('/api/items', {
-            method: 'POST',
+            method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -49,7 +57,7 @@ export default function AddItem() {
           });
           const data = await response.json();
           // need error handling
-          alert('submitted');
+          alert('edited');
         }}
       >
         {(formik) => (
