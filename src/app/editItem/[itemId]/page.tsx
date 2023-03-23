@@ -2,7 +2,6 @@
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
-import Button from "@root/components/Button/Button";
 
 export default function EditItem({ params }) {
 
@@ -128,12 +127,9 @@ export default function EditItem({ params }) {
               )}
             </div>
 
-            <Button
-              buttonText='Edit Item'
-              color='green'
-              type='submit'
-              disabled={formik.isSubmitting}
-            />
+            <button type='submit' disabled={formik.isSubmitting}>
+              Edit
+            </button>
           </form>
         )}
       </Formik>

@@ -2,7 +2,6 @@
 import { Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import Button from "@root/components/Button/Button";
 
 export default function AddItem() {
   const initialValues = {
@@ -110,12 +109,9 @@ export default function AddItem() {
               )}
             </div>
 
-            <Button
-              buttonText='Add Item'
-              color='green'
-              type='submit'
-              disabled={formik.isSubmitting}
-            />
+            <button type='submit' disabled={formik.isSubmitting}>
+              Add
+            </button>
           </form>
         )}
       </Formik>
