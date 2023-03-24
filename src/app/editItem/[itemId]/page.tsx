@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useRouter } from 'next/navigation';
 
-export default function EditItem({ params }) {
+export default function EditItem({ params }: {params: {itemId: string}}) {
   const router = useRouter();
   const [loading, setLoading] = useState(true)
   const [initialValues, setInitialValues] = useState({
@@ -21,7 +21,6 @@ export default function EditItem({ params }) {
       const values = await res.json();
       setInitialValues(values)
       setLoading(false)
-      console.log(values)
     }
     fetchItems();
   }, [params.itemId]);
