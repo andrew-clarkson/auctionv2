@@ -11,6 +11,7 @@ interface Props {
     description: string;
     photoUrl: string;
     price: number;
+    bidCount: number;
   };
 }
 
@@ -41,7 +42,7 @@ export default function Item(props: Props) {
         <p className={styles.title}>{props.item.title}</p>
         <p className={styles.description}>{props.item.description}</p>
 
-        <BidBox id={props.item.id} price={props.item.price} />
+        <BidBox id={props.item.id} price={props.item.price} bidCount={props.item.bidCount} />
 
         <div className={styles.buttonsSection}>
           <Link href={`/editItem/${props.item.id}`} ><button>Edit</button></Link>

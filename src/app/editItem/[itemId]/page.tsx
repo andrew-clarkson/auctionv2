@@ -100,7 +100,8 @@ export default function EditItem({ params }) {
             </div>
 
             <div>
-              <label htmlFor='price'>Start Price</label>
+              <label htmlFor='price'>Current Price</label>
+              {/* TODO: delete ability to change price afterauction start */}
             </div>
             <div>
               <input

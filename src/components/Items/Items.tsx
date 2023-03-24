@@ -9,11 +9,13 @@ interface Item {
   description: string;
   photoUrl: string;
   price: number;
+  bidCount: number
 }
 
 export default function Items() {
   // remove state/effect in future if you can make this a server component and only
   // have the bid/price info as client component
+  // items do not need to be stateful for bidders on display pages
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
