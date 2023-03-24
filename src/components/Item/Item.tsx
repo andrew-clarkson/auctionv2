@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { isPropertySignature } from 'typescript';
 import BidBox from '../BidBox/BidBox';
 import styles from './item.module.css';
 
