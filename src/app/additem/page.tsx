@@ -2,8 +2,10 @@
 import { Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
+import { useRouter } from 'next/navigation';
 
 export default function AddItem() {
+  const router = useRouter();
   const initialValues = {
     title: '',
     description: '',
@@ -29,8 +31,6 @@ export default function AddItem() {
       ),
   });
 
-
-
   return (
     <div>
       <h1>Add an Item</h1>
@@ -49,6 +49,7 @@ export default function AddItem() {
           const data = await response.json();
           // need error handling
           alert('submitted');
+          router.push('/')
         }}
       >
         {(formik) => (

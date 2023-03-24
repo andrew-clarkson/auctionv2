@@ -2,9 +2,10 @@
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
+import { useRouter } from 'next/navigation';
 
 export default function EditItem({ params }) {
-
+  const router = useRouter();
   const [loading, setLoading] = useState(true)
   const [initialValues, setInitialValues] = useState({
     title: '',
@@ -67,6 +68,7 @@ export default function EditItem({ params }) {
           const data = await response.json();
           // need error handling
           alert('edited');
+          router.push('/')
         }}
       >
         {(formik) => (
