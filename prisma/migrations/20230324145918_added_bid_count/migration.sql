@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Item` ADD COLUMN `bidCount` INTEGER NOT NULL DEFAULT 0;
