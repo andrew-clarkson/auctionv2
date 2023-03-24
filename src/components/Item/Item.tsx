@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { isPropertySignature } from 'typescript';
+import BidBox from '../BidBox/BidBox';
 import styles from './item.module.css';
 
 interface Props {
@@ -38,9 +40,10 @@ export default function Item(props: Props) {
       <div className={styles.detailsSection}>
         <p className={styles.title}>{props.item.title}</p>
         <p className={styles.description}>{props.item.description}</p>
-        <p>${props.item.price} 14 bids</p>
+
+        <BidBox id={props.item.id} price={props.item.price} />
+
         <div className={styles.buttonsSection}>
-          <button>Bid</button>
           <Link href={`/editItem/${props.item.id}`} ><button>Edit</button></Link>
           <button onClick={deleteItem}>Delete</button>
         </div>

@@ -6,13 +6,18 @@ const prisma = new PrismaClient()
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req
 
+  // TODO: add validations
+  // TODO: add useful error/success messages/toasts
+
   switch (method) {
     case 'GET':
       const items = await prisma.item.findMany();
+      console.log(items)
       res.status(200).json(items);
       break;
     case 'POST':
       // validations?
+      console.log(req.body)
       const createItem = await prisma.item.create({ data: req.body });
       res.status(201).json(createItem);
       break;

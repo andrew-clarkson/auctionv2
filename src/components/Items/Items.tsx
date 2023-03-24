@@ -20,10 +20,15 @@ export default function Items() {
     async function fetchItems() {
       const res = await fetch('/api/items');
       const items: Item[] = await res.json();
+      // price is being fetched as a string, convert to number
+      items.forEach(item => {
+        item.price = Number(item.price)
+      })
       setItems(items);
     }
     fetchItems();
   }, []);
+
 
   return (
     <div className={styles.itemsGridContainer}>
