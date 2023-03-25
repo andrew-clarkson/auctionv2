@@ -25,8 +25,6 @@ export default function EditItem({ params }: {params: {itemId: string}}) {
     fetchItems();
   }, [params.itemId]);
 
-
-
   const validationSchema = Yup.object({
     title: Yup.string()
       .min(7, 'Must be at least 7 characters')
@@ -44,8 +42,6 @@ export default function EditItem({ params }: {params: {itemId: string}}) {
         'That is not a valid URL'
       ),
   });
-
-
 
   if (loading) return
 
