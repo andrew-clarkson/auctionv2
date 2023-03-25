@@ -40,11 +40,18 @@ export default function Item(props: Props) {
       <div className={styles.detailsSection}>
         <p className={styles.title}>{props.item.title}</p>
         <p className={styles.description}>{props.item.description}</p>
+        <Link href={`/item/${props.item.id}`}>View</Link>
 
-        <BidBox id={props.item.id} price={props.item.price} bidCount={props.item.bidCount} />
+        <BidBox
+          id={props.item.id}
+          price={props.item.price}
+          bidCount={props.item.bidCount}
+        />
 
         <div className={styles.buttonsSection}>
-          <Link href={`/editItem/${props.item.id}`} ><button>Edit</button></Link>
+          <Link href={`/editItem/${props.item.id}`}>
+            <button>Edit</button>
+          </Link>
           <button onClick={deleteItem}>Delete</button>
         </div>
       </div>
