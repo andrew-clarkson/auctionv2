@@ -1,7 +1,16 @@
 import { PrismaClient } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import Pusher from "pusher";
 
 const prisma = new PrismaClient()
+
+const pusher = new Pusher({
+  appId: process.env.app_id,
+  key: "48a91d99d52f3a702af0",
+  secret: process.env.secret,
+  cluster: "us2",
+  useTLS: true
+});
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req
@@ -23,10 +32,17 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       break;
     case 'PUT':
       // validations?
+      console.log(req.body)
       const editItem = await prisma.item.update({
         where: { id: req.body.id },
         data: { ...req.body },
       });
+
+      // pusher is working
+      pusher.trigger("my-channel2", "my-event", {
+        message: editItem.price
+      });
+
       res.status(201).json(editItem);
       break;
     case 'DELETE':
