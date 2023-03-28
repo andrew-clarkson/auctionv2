@@ -13,6 +13,9 @@ export default function AddItem() {
     photoUrl: '',
   };
 
+  // does yup protect from sql injection?
+  // also https://www.npmjs.com/package/common-tags
+
   const validationSchema = Yup.object({
     title: Yup.string()
       .min(7, 'Must be at least 7 characters')

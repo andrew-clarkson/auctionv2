@@ -34,6 +34,8 @@ export default function BidBox(props: Props) {
 
   useEffect(() => {
     // on page load, connect
+    // get this into a context TOP PRIORITY
+    // https://www.frankcalise.com/building-scalable-realtime-react-app-with-pusher
     Pusher.logToConsole = true;
     const pusher = new Pusher('48a91d99d52f3a702af0', { cluster: 'us2' });
     const channel = pusher.subscribe('my-channel2');
