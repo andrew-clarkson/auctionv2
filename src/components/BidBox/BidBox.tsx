@@ -34,7 +34,7 @@ export default function BidBox(props: Props) {
   };
 
   useEffect(() => {
-    const channel = pusher.subscribe('my-channel2');
+    const channel = pusher.subscribe(props.id);
 
     // whenever an event with the name my-event is triggered on the subscribed Pusher channel
     // the callback function defined in .bind() (a state update) will be called with the event data as its argument.
