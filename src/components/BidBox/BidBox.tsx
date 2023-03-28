@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './bidbox.module.css';
-import Pusher from 'pusher-js';
+import { usePusher } from 'context/PusherContext';
 
 interface Props {
   id: string;
@@ -13,6 +13,7 @@ interface Props {
 export default function BidBox(props: Props) {
   const [price, setPrice] = useState(props.price)
   const [numberOfBids, setNumberOfBids] = useState(props.bidCount)
+  const pusher = usePusher();
 
   const sendBid = async (nextBid: {price: number, id: string, bidCount: number}) => {
     const response = await fetch('/api/items', {
@@ -33,11 +34,6 @@ export default function BidBox(props: Props) {
   };
 
   useEffect(() => {
-    // on page load, connect
-    // get this into a context TOP PRIORITY
-    // https://www.frankcalise.com/building-scalable-realtime-react-app-with-pusher
-    Pusher.logToConsole = true;
-    const pusher = new Pusher('48a91d99d52f3a702af0', { cluster: 'us2' });
     const channel = pusher.subscribe('my-channel2');
 
     // whenever an event with the name my-event is triggered on the subscribed Pusher channel
@@ -49,10 +45,8 @@ export default function BidBox(props: Props) {
     // cleanup
     return () => {
       channel.unbind();
-      pusher.unsubscribe(channel);
-      pusher.disconnect();
     };
-  }, []);
+  }, [pusher]);
 
   return (
     <div>
