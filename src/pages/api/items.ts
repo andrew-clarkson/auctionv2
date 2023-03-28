@@ -39,6 +39,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       });
 
       // pusher is working
+      // need something here to make it usable on all items
+      // also to check that it is a bid, not an edit
       pusher.trigger("my-channel2", "my-event", {
         message: editItem.price
       });
