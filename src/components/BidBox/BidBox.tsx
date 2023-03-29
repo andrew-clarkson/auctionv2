@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './bidbox.module.css';
-import { usePusher } from 'context/PusherContext';
+import {pusherConnection} from 'utils/pusher'
 
 interface Props {
   id: string;
@@ -10,10 +10,11 @@ interface Props {
   bidCount: number;
 }
 
+const pusher = pusherConnection
+
 export default function BidBox(props: Props) {
   const [price, setPrice] = useState(props.price)
   const [numberOfBids, setNumberOfBids] = useState(props.bidCount)
-  const pusher = usePusher();
 
   const sendBid = async (nextBid: {price: number, id: string, bidCount: number}) => {
     const response = await fetch('/api/items', {
