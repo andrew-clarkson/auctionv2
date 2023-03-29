@@ -1,5 +1,3 @@
-'use client';
-import { useEffect, useState } from 'react';
 import Item from '../Item/Item';
 import styles from './items.module.css';
 
@@ -12,25 +10,26 @@ interface Item {
   bidCount: number
 }
 
-export default function Items() {
-  // remove state/effect in future if you can make this a server component and only
-  // have the bid/price info as client component
-  // items do not need to be stateful for bidders on display pages
-  const [items, setItems] = useState<Item[]>([]);
+async function getData() {
+  const res = await fetch('http://localhost:3000/api/items');
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
 
-  useEffect(() => {
-    async function fetchItems() {
-      const res = await fetch('/api/items');
-      const items: Item[] = await res.json();
-      // price is being fetched as a string, convert to number
-      items.forEach(item => {
-        item.price = Number(item.price)
-      })
-      setItems(items);
-    }
-    fetchItems();
-  }, []);
+  // handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch items data');
+  }
 
+  return res.json();
+}
+
+export default async function Items() {
+  const items: Item[] = await getData();
+  items.forEach(item => {
+    item.price = Number(item.price)
+    item.bidCount = Number(item.bidCount)
+  })
 
   return (
     <div className={styles.itemsGridContainer}>
