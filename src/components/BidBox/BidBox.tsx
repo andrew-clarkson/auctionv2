@@ -47,7 +47,7 @@ export default function BidBox(props: Props) {
     return () => {
       channel.unbind();
     };
-  }, [pusher, props.id]);
+  }, [props.id]);
 
   return (
     <div>
