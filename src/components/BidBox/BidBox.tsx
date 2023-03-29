@@ -29,7 +29,6 @@ export default function BidBox(props: Props) {
   const makeBid = (): void => {
     const nextBidPrice = price + 1;
     const nextBidCount = numberOfBids + 1;
-    setNumberOfBids(nextBidCount);
     sendBid({ id: props.id, price: nextBidPrice, bidCount: nextBidCount });
   };
 
@@ -38,15 +37,16 @@ export default function BidBox(props: Props) {
 
     // whenever an event with the name my-event is triggered on the subscribed Pusher channel
     // the callback function defined in .bind() (a state update) will be called with the event data as its argument.
-    channel.bind('my-event', (data: { message: string }) => {
-      setPrice(Number(data.message));
+    channel.bind('my-event', (data: { price: number; bidCount: number }) => {
+      setPrice(Number(data.price));
+      setNumberOfBids(Number(data.bidCount));
     });
 
     // cleanup
     return () => {
       channel.unbind();
     };
-  }, [pusher]);
+  }, [pusher, props.id]);
 
   return (
     <div>

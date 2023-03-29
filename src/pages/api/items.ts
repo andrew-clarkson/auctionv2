@@ -42,7 +42,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       // need something here to make it usable on all items
       // also to check that it is a bid, not an edit
       pusher.trigger(editItem.id, "my-event", {
-        message: editItem.price
+        price: editItem.price,
+        bidCount: editItem.bidCount
       });
 
       res.status(201).json(editItem);
