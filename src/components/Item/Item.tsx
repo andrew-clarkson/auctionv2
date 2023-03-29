@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import BidBox from '../BidBox/BidBox';
+import Button from '../Buttons/DeleteButton';
 import styles from './item.module.css';
 
 interface Props {
@@ -52,7 +53,7 @@ export default function Item(props: Props) {
           <Link href={`/editItem/${props.item.id}`}>
             <button>Edit</button>
           </Link>
-          <button onClick={deleteItem}>Delete</button>
+          <Button id={props.item.id} />
         </div>
       </div>
     </div>
