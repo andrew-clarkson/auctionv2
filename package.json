@@ -10,6 +10,7 @@
     "studio": "npx prisma studio"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.14.2",
     "@next/font": "13.1.6",
     "@prisma/client": "^4.11.0",
     "@types/node": "18.13.0",
