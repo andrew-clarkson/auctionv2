@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import styles from './bidbox.module.css';
 import {pusherConnection} from 'utils/pusher'
+import { SignedIn } from "@clerk/nextjs/app-beta/client";
 
 interface Props {
   id: string;
@@ -53,7 +54,9 @@ export default function BidBox(props: Props) {
     <div>
       <p>Current Bid ${price}</p>
       <p># bids: {numberOfBids}</p>
-      <button onClick={makeBid}>Bid</button>
+      <SignedIn>
+        <button onClick={makeBid}>Bid</button>
+      </SignedIn>
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import BidBox from '../BidBox/BidBox';
-import Button from '../Buttons/DeleteButton';
+import DeleteButton from '../Buttons/DeleteButton';
 import styles from './item.module.css';
+import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta";
 
 interface Props {
   item: {
@@ -49,12 +50,15 @@ export default function Item(props: Props) {
           bidCount={props.item.bidCount}
         />
 
-        <div className={styles.buttonsSection}>
+        <SignedIn>
+          <div className={styles.buttonsSection}>
           <Link href={`/editItem/${props.item.id}`}>
             <button>Edit</button>
           </Link>
-          <Button id={props.item.id} />
+          <DeleteButton id={props.item.id} />
         </div>
+        </SignedIn>
+        <SignedOut><Link href='/sign-in'><button>Sign in to bid</button></Link></SignedOut>
       </div>
     </div>
   );
