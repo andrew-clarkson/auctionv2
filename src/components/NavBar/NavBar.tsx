@@ -1,3 +1,4 @@
+import { UserButton } from '@clerk/nextjs/app-beta';
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
 import Link from 'next/link';
 import styles from './navbar.module.css';
@@ -29,6 +30,7 @@ export default function Nav() {
         <Link href="/">
           <button>Auctions</button>
         </Link>
+        <UserButton />
       </div>
     </nav>
   );
