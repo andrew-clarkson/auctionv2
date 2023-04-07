@@ -1,14 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from 'utils/prisma'
-import Pusher from "pusher";
-
-const pusher = new Pusher({
-  appId: process.env.app_id,
-  key: "48a91d99d52f3a702af0",
-  secret: process.env.secret,
-  cluster: "us2",
-  useTLS: true
-});
+import { pusher } from 'utils/pusherServer'
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req
