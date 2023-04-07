@@ -52,7 +52,7 @@ export default function AddItem() {
           const data = await response.json();
           // need error handling
           alert('submitted');
-          router.push('/')
+          router.push('/') // this causes a refresh
         }}
       >
         {(formik) => (

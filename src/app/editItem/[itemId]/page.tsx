@@ -63,7 +63,7 @@ export default function EditItem({ params }: {params: {itemId: string}}) {
           const data = await response.json();
           // need error handling
           alert('edited');
-          router.push('/')
+          router.push('/') // this causes a refresh
         }}
       >
         {(formik) => (
