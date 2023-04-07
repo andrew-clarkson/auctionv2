@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { prisma } from 'utils/prisma'
 import Pusher from "pusher";
-
-const prisma = new PrismaClient()
 
 const pusher = new Pusher({
   appId: process.env.app_id,
@@ -21,7 +19,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
   switch (method) {
     case 'GET':
       const items = await prisma.item.findMany();
-      console.log(items)
+      // console.log(items)
       res.status(200).json(items);
       break;
     case 'POST':
