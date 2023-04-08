@@ -1,24 +1,18 @@
+'use client'
 import Link from 'next/link';
+import AuthButtons from './AuthButtons';
 import styles from './navbar.module.css';
+import { SessionProvider } from 'next-auth/react';
 
 export default function Nav() {
   return (
     <nav className={styles.navBar}>
-      <Link href="/" className={styles.logo}>
+      <Link href='/' className={styles.logo}>
         <h1>AUCTION v2</h1>
       </Link>
-
-      <div className={styles.navButtons}>
-        <Link href="/additem">
-          <button className="">Add Item</button>
-        </Link>
-        <Link href="/login">
-          <button className="">Sign Up</button>
-        </Link>
-        <Link href="/">
-          <button>Auctions</button>
-        </Link>
-      </div>
+      <SessionProvider>
+        <AuthButtons />
+      </SessionProvider>
     </nav>
   );
 }
