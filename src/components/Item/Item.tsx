@@ -4,6 +4,7 @@ import BidBox from '../BidBox/BidBox';
 import DeleteButton from '../Buttons/DeleteButton';
 import styles from './item.module.css';
 import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
+import EditButton from '../Buttons/EditButton';
 
 interface Props {
   item: {
@@ -37,14 +38,11 @@ export default function Item(props: Props) {
             price={props.item.price}
             bidCount={props.item.bidCount}
           />
+          <div className={styles.buttonsSection}>
+            <EditButton id={props.item.id} />
+            <DeleteButton id={props.item.id} />
+          </div>
         </SessionProviderWrapper>
-
-        <div className={styles.buttonsSection}>
-          <Link href={`/editItem/${props.item.id}`}>
-            <button>Edit</button>
-          </Link>
-          <DeleteButton id={props.item.id} />
-        </div>
       </div>
     </div>
   );
