@@ -48,6 +48,7 @@ export default function Item({ params }: { params: { itemId: string } }) {
   };
 
   if (loading) return;
+  if (!item) return // need error handling here
 
   return (
     <div className={styles.itemContainer}>
