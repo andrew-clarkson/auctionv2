@@ -6,6 +6,8 @@ import styles from './item.module.css';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
+import DeleteButton from '@root/components/Buttons/DeleteButton';
+import EditButton from '@root/components/Buttons/EditButton';
 
 interface Item {
   id: string;
@@ -64,15 +66,16 @@ export default function Item({ params }: { params: { itemId: string } }) {
         <p className={styles.description}>{item.description}</p>
 
         <SessionProviderWrapper>
-          <BidBox id={item.id} price={item.price} bidCount={item.bidCount} />
+          <BidBox
+            id={item.id}
+            price={item.price}
+            bidCount={item.bidCount}
+          />
+          <div className={styles.buttonsSection}>
+            <EditButton id={item.id} />
+            <DeleteButton id={item.id} />
+          </div>
         </SessionProviderWrapper>
-
-        <div className={styles.buttonsSection}>
-          <Link href={`/editItem/${item.id}`}>
-            <button>Edit</button>
-          </Link>
-          <button onClick={deleteItem}>Delete</button>
-        </div>
       </div>
     </div>
   );
