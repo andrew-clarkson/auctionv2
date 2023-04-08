@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import BidBox from '../BidBox/BidBox';
-import Button from '../Buttons/DeleteButton';
+import DeleteButton from '../Buttons/DeleteButton';
 import styles from './item.module.css';
 import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
 
@@ -17,19 +17,6 @@ interface Props {
 }
 
 export default function Item(props: Props) {
-  const deleteItem = async () => {
-    const response = await fetch('/api/items', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(props.item.id),
-    });
-    const data = await response.json();
-    // need error handling
-    alert('deleted');
-  };
-
   return (
     <div className={styles.itemContainer}>
       <Image
@@ -56,7 +43,7 @@ export default function Item(props: Props) {
           <Link href={`/editItem/${props.item.id}`}>
             <button>Edit</button>
           </Link>
-          <Button id={props.item.id} />
+          <DeleteButton id={props.item.id} />
         </div>
       </div>
     </div>
