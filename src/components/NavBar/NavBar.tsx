@@ -1,8 +1,7 @@
-'use client'
 import Link from 'next/link';
 import AuthButtons from './AuthButtons';
 import styles from './navbar.module.css';
-import { SessionProvider } from 'next-auth/react';
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
 
 export default function Nav() {
   return (
@@ -10,9 +9,9 @@ export default function Nav() {
       <Link href='/' className={styles.logo}>
         <h1>AUCTION v2</h1>
       </Link>
-      <SessionProvider>
+      <SessionProviderWrapper>
         <AuthButtons />
-      </SessionProvider>
+      </SessionProviderWrapper>
     </nav>
   );
 }
