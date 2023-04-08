@@ -3,6 +3,7 @@ import Link from 'next/link';
 import BidBox from '../BidBox/BidBox';
 import Button from '../Buttons/DeleteButton';
 import styles from './item.module.css';
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
 
 interface Props {
   item: {
@@ -43,11 +44,13 @@ export default function Item(props: Props) {
         <p className={styles.description}>{props.item.description}</p>
         <Link href={`/item/${props.item.id}`}>View</Link>
 
-        <BidBox
-          id={props.item.id}
-          price={props.item.price}
-          bidCount={props.item.bidCount}
-        />
+        <SessionProviderWrapper>
+          <BidBox
+            id={props.item.id}
+            price={props.item.price}
+            bidCount={props.item.bidCount}
+          />
+        </SessionProviderWrapper>
 
         <div className={styles.buttonsSection}>
           <Link href={`/editItem/${props.item.id}`}>
