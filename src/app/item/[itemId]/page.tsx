@@ -5,6 +5,7 @@ import BidBox from '@root/components/BidBox/BidBox';
 import styles from './item.module.css';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
 
 interface Item {
   id: string;
@@ -61,7 +62,9 @@ export default function Item({ params }: { params: { itemId: string } }) {
         <p className={styles.title}>{item.title}</p>
         <p className={styles.description}>{item.description}</p>
 
-        <BidBox id={item.id} price={item.price} bidCount={item.bidCount} />
+        <SessionProviderWrapper>
+          <BidBox id={item.id} price={item.price} bidCount={item.bidCount} />
+        </SessionProviderWrapper>
 
         <div className={styles.buttonsSection}>
           <Link href={`/editItem/${item.id}`}>
