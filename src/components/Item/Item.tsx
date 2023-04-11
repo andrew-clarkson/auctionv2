@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import BidBox from '../BidBox/BidBox';
-import Button from '../Buttons/DeleteButton';
+import DeleteButton from '../Buttons/DeleteButton';
 import styles from './item.module.css';
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
+import EditButton from '../Buttons/EditButton';
 
 interface Props {
   item: {
@@ -16,19 +18,6 @@ interface Props {
 }
 
 export default function Item(props: Props) {
-  const deleteItem = async () => {
-    const response = await fetch('/api/items', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(props.item.id),
-    });
-    const data = await response.json();
-    // need error handling
-    alert('deleted');
-  };
-
   return (
     <div className={styles.itemContainer}>
       <Image
@@ -43,18 +32,17 @@ export default function Item(props: Props) {
         <p className={styles.description}>{props.item.description}</p>
         <Link href={`/item/${props.item.id}`}>View</Link>
 
-        <BidBox
-          id={props.item.id}
-          price={props.item.price}
-          bidCount={props.item.bidCount}
-        />
-
-        <div className={styles.buttonsSection}>
-          <Link href={`/editItem/${props.item.id}`}>
-            <button>Edit</button>
-          </Link>
-          <Button id={props.item.id} />
-        </div>
+        <SessionProviderWrapper>
+          <BidBox
+            id={props.item.id}
+            price={props.item.price}
+            bidCount={props.item.bidCount}
+          />
+          <div className={styles.buttonsSection}>
+            <EditButton id={props.item.id} />
+            <DeleteButton id={props.item.id} />
+          </div>
+        </SessionProviderWrapper>
       </div>
     </div>
   );

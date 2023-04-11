@@ -5,6 +5,9 @@ import BidBox from '@root/components/BidBox/BidBox';
 import styles from './item.module.css';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
+import DeleteButton from '@root/components/Buttons/DeleteButton';
+import EditButton from '@root/components/Buttons/EditButton';
 
 interface Item {
   id: string;
@@ -47,6 +50,7 @@ export default function Item({ params }: { params: { itemId: string } }) {
   };
 
   if (loading) return;
+  if (!item) return // need error handling here
 
   return (
     <div className={styles.itemContainer}>
@@ -61,14 +65,17 @@ export default function Item({ params }: { params: { itemId: string } }) {
         <p className={styles.title}>{item.title}</p>
         <p className={styles.description}>{item.description}</p>
 
-        <BidBox id={item.id} price={item.price} bidCount={item.bidCount} />
-
-        <div className={styles.buttonsSection}>
-          <Link href={`/editItem/${item.id}`}>
-            <button>Edit</button>
-          </Link>
-          <button onClick={deleteItem}>Delete</button>
-        </div>
+        <SessionProviderWrapper>
+          <BidBox
+            id={item.id}
+            price={item.price}
+            bidCount={item.bidCount}
+          />
+          <div className={styles.buttonsSection}>
+            <EditButton id={item.id} />
+            <DeleteButton id={item.id} />
+          </div>
+        </SessionProviderWrapper>
       </div>
     </div>
   );

@@ -1,10 +1,14 @@
 'use client'
 
+import { useSession } from "next-auth/react"
+
 interface Props {
-  id?: string
+  id: string
 }
 
 export default function DeleteButton(props: Props) {
+  const { data: session, status } = useSession();
+
   const deleteItem = async () => {
     const response = await fetch('/api/items', {
       method: 'DELETE',
@@ -19,6 +23,10 @@ export default function DeleteButton(props: Props) {
   };
 
   return (
-    <button onClick={deleteItem}>Delete</button>
+    <>
+      {status === 'authenticated' && (
+        <button onClick={deleteItem}>Delete</button>
+      )}
+    </>
   );
 }
