@@ -1,24 +1,26 @@
 body {
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 80vw;
-    margin: 0 auto;
-    background: #F5F6FA
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 80vw;
+  margin: 0 auto;
+  background: #f5f6fa;
+}
 
- }
-
-main, nav, footer {}
+main,
+nav,
+footer {
+}
 
 nav {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 button {
-    background-color: transparent;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 0 5px 0 0;
-    padding: 4px 10px;
-    color: black;
-    font-size: large;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 0 5px 0 0;
+  padding: 4px 10px;
+  color: black;
+  font-size: large;
 }

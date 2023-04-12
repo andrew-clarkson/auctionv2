@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Link from 'next/link';
 import styles from './navbar.module.css';
 import { useSession, signIn, signOut } from 'next-auth/react';
@@ -16,9 +16,9 @@ export default function AuthButtons() {
     return (
       <div className={styles.navButtons}>
         <p>Signed in as {userEmail}</p>
-        <Link href="/additem">
-           <button className="">Add Item</button>
-         </Link>
+        <Link href='/additem'>
+          <button className=''>Add Item</button>
+        </Link>
         <button onClick={() => signOut()}>Sign out</button>
       </div>
     );

@@ -1,7 +1,7 @@
-"use client";
-import { Formik } from "formik";
-import React from "react";
-import * as Yup from "yup";
+'use client';
+import { Formik } from 'formik';
+import React from 'react';
+import * as Yup from 'yup';
 import { useRouter } from 'next/navigation';
 
 export default function AddItem() {
@@ -52,7 +52,7 @@ export default function AddItem() {
           const data = await response.json();
           // need error handling
           alert('submitted');
-          router.push('/') // this causes a refresh
+          router.push('/'); // this causes a refresh
         }}
       >
         {(formik) => (

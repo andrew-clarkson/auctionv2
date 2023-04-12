@@ -5,7 +5,7 @@ import BidBox from '@root/components/BidBox/BidBox';
 import styles from './item.module.css';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper';
 import DeleteButton from '@root/components/Buttons/DeleteButton';
 import EditButton from '@root/components/Buttons/EditButton';
 
@@ -27,7 +27,7 @@ export default function Item({ params }: { params: { itemId: string } }) {
     async function fetchItems() {
       const res = await fetch(`/api/items/${params.itemId}`);
       const item = await res.json();
-      item.price = Number(item.price)
+      item.price = Number(item.price);
       setItem(item);
       setLoading(false);
     }
@@ -45,12 +45,11 @@ export default function Item({ params }: { params: { itemId: string } }) {
     const data = await response.json();
     // need error handling
     alert('deleted');
-    router.push('/')
-
+    router.push('/');
   };
 
   if (loading) return;
-  if (!item) return // need error handling here
+  if (!item) return; // need error handling here
 
   return (
     <div className={styles.itemContainer}>
@@ -66,11 +65,7 @@ export default function Item({ params }: { params: { itemId: string } }) {
         <p className={styles.description}>{item.description}</p>
 
         <SessionProviderWrapper>
-          <BidBox
-            id={item.id}
-            price={item.price}
-            bidCount={item.bidCount}
-          />
+          <BidBox id={item.id} price={item.price} bidCount={item.bidCount} />
           <div className={styles.buttonsSection}>
             <EditButton id={item.id} />
             <DeleteButton id={item.id} />

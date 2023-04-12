@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import AuthButtons from './AuthButtons';
 import styles from './navbar.module.css';
-import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper';
 
 export default function Nav() {
   return (

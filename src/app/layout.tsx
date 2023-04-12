@@ -10,12 +10,12 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <head />
-        <body>
-          {/* navbar here will be rendered on all pages inside this route */}
-          <Nav />
-          {children}
-          <Footer />
-        </body>
+      <body>
+        {/* navbar here will be rendered on all pages inside this route */}
+        <Nav />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

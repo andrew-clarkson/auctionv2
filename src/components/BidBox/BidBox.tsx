@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import styles from './bidbox.module.css';
-import {pusherConnection} from 'utils/pusher'
-import { useSession } from "next-auth/react"
+import { pusherConnection } from 'utils/pusher';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   id: string;
@@ -11,14 +11,18 @@ interface Props {
   bidCount: number;
 }
 
-const pusher = pusherConnection
+const pusher = pusherConnection;
 
 export default function BidBox(props: Props) {
-  const [numberOfBids, setNumberOfBids] = useState(props.bidCount)
+  const [numberOfBids, setNumberOfBids] = useState(props.bidCount);
   const { data: session, status } = useSession();
-  const [price, setPrice] = useState(props.price)
+  const [price, setPrice] = useState(props.price);
 
-  const sendBid = async (nextBid: {price: number, id: string, bidCount: number}) => {
+  const sendBid = async (nextBid: {
+    price: number;
+    id: string;
+    bidCount: number;
+  }) => {
     const response = await fetch('/api/items', {
       method: 'PUT',
       headers: {
@@ -27,7 +31,7 @@ export default function BidBox(props: Props) {
       body: JSON.stringify(nextBid),
     });
     const data = await response.json();
-  }
+  };
 
   const makeBid = (): void => {
     const nextBidPrice = price + 1;

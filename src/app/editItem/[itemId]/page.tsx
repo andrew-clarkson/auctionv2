@@ -1,26 +1,26 @@
-"use client";
-import { Formik } from "formik";
-import React, { useEffect, useState } from "react";
-import * as Yup from "yup";
+'use client';
+import { Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import * as Yup from 'yup';
 import { useRouter } from 'next/navigation';
 
-export default function EditItem({ params }: {params: {itemId: string}}) {
+export default function EditItem({ params }: { params: { itemId: string } }) {
   const router = useRouter();
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [initialValues, setInitialValues] = useState({
     title: '',
     description: '',
     price: '',
     photoUrl: '',
-    id: ''
+    id: '',
   });
 
   useEffect(() => {
     async function fetchItems() {
       const res = await fetch(`/api/items/${params.itemId}`);
       const values = await res.json();
-      setInitialValues(values)
-      setLoading(false)
+      setInitialValues(values);
+      setLoading(false);
     }
     fetchItems();
   }, [params.itemId]);
@@ -43,7 +43,7 @@ export default function EditItem({ params }: {params: {itemId: string}}) {
       ),
   });
 
-  if (loading) return
+  if (loading) return;
 
   return (
     <div>
@@ -63,7 +63,7 @@ export default function EditItem({ params }: {params: {itemId: string}}) {
           const data = await response.json();
           // need error handling
           alert('edited');
-          router.push('/') // this causes a refresh
+          router.push('/'); // this causes a refresh
         }}
       >
         {(formik) => (

@@ -1,4 +1,3 @@
-
 ## Get Started
 
 Start development server `npm run dev`
@@ -8,6 +7,7 @@ Start development server `npm run dev`
 ### Tools
 
 Use Prisma Studio to explore data `npm run studio`
+
 ### Migrations
 
 1. Add fields to schema

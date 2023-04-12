@@ -3,7 +3,7 @@ import Link from 'next/link';
 import BidBox from '../BidBox/BidBox';
 import DeleteButton from '../Buttons/DeleteButton';
 import styles from './item.module.css';
-import SessionProviderWrapper from 'src/providers/SessionProviderWrapper'
+import SessionProviderWrapper from 'src/providers/SessionProviderWrapper';
 import EditButton from '../Buttons/EditButton';
 
 interface Props {
