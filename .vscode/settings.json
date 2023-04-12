@@ -9,9 +9,6 @@
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modifications",
 
-  "prettier.singleQuote": true,
-  "prettier.jsxSingleQuote": true,
-
   // Indent
   "editor.detectIndentation": true,
   "editor.indentSize": "tabSize",
