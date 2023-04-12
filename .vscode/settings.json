@@ -1,4 +1,16 @@
 {
+  // TypeScript
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // Format
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
+
+  // Indent
+  "editor.detectIndentation": true,
+  "editor.indentSize": "tabSize",
+  "editor.tabSize": 2
 }

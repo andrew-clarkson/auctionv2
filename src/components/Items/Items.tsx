@@ -7,7 +7,7 @@ interface Item {
   description: string;
   photoUrl: string;
   price: number;
-  bidCount: number
+  bidCount: number;
 }
 
 async function getData() {
@@ -26,10 +26,10 @@ async function getData() {
 
 export default async function Items() {
   const items: Item[] = await getData();
-  items.forEach(item => {
-    item.price = Number(item.price)
-    item.bidCount = Number(item.bidCount)
-  })
+  items.forEach((item) => {
+    item.price = Number(item.price);
+    item.bidCount = Number(item.bidCount);
+  });
 
   return (
     <div className={styles.itemsGridContainer}>

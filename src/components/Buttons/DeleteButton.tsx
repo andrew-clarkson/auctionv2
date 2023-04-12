@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { useSession } from "next-auth/react"
+import { useSession } from 'next-auth/react';
 
 interface Props {
-  id: string
+  id: string;
 }
 
 export default function DeleteButton(props: Props) {
