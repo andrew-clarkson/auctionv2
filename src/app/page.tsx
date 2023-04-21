@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <main className=''>
       <h3>FILTERS/SORT</h3>
+      {/* @ts-expect-error Async Server Component */}
       <Items />
     </main>
   );
