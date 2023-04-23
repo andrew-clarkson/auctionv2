@@ -5,6 +5,7 @@ import DeleteButton from '../Buttons/DeleteButton';
 import styles from './item.module.css';
 import SessionProviderWrapper from 'src/providers/SessionProviderWrapper';
 import EditButton from '../Buttons/EditButton';
+import { Decimal } from '@prisma/client/runtime';
 
 interface Props {
   item: {
@@ -12,7 +13,7 @@ interface Props {
     title: string;
     description: string;
     photoUrl: string;
-    price: number;
+    price: Decimal;
     bidCount: number;
   };
 }
@@ -35,7 +36,7 @@ export default function Item(props: Props) {
         <SessionProviderWrapper>
           <BidBox
             id={props.item.id}
-            price={props.item.price}
+            price={Number(props.item.price)}
             bidCount={props.item.bidCount}
           />
           <div className={styles.buttonsSection}>
